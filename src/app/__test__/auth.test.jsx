@@ -43,12 +43,10 @@ describe('Create product tests',  () => {
 
     it("should return 200", async () => {
       const response = await required(`https://gce.onedev.top/api/v1/e-commerce/products`).post("").send(body).set('Authorization', `Bearer ${access_token}`);
-      access_token = response._body.access_token
       expect(response.statusCode).toBe(201);
     })
     it("should return 400", async () => {
-      const response = await required(`https://gce.onedev.top/api/v1/e-commerce/products`).post("").send(body).set('Authorization', `Bearer ${TOKEN}`);
-      access_token = response._body.access_token
+      const response = await required(`https://gce.onedev.top/api/v1/e-commerce/products`).post("").send(body).set('Authorization', `Bearer ${access_token}`);
       expect(response.statusCode).toBe(400);
     })
 });
