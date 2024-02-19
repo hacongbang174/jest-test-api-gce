@@ -12,7 +12,7 @@ describe("Login tests", () => {
   //viết code test login (phone và password đều đúng  => trả ra HTTP status 201)
   it("should call endpoint with phone & password true, return 201", async () => {
     //khai báo biến response nhận giá trị response khi call api login trả về
-    const response = await required(
+    const response = await required( //dùng required của thư viện supertest để call api
       `https://gce.onedev.top/api/v1/auth/sign-in` //link api login
     )
       .post("") //phương thức post
@@ -24,7 +24,7 @@ describe("Login tests", () => {
   //viết code test login (phone hoặc password sai => trả ra HTTP status 401)
   it("should call endpoint with phone & password false, return 401", async () => {
      //khai báo biến response nhận giá trị response khi call api login trả về
-    const response = await required(
+    const response = await required( //dùng required của thư viện supertest để call api
       `https://gce.onedev.top/api/v1/auth/sign-in` //link api login
     )
       .post("") //phương thức post
@@ -95,7 +95,8 @@ describe('Create news tests',  () => {
 
   //Viết code test nếu request body gửi lên đúng => trả ra HTTP status 200
     it("should return 200", async () => {
-      const response = await required(`https://gce.onedev.top/api/v1/news` //link api tạo mới news
+      const response = await required(//dùng required của thư viện supertest để call api
+        `https://gce.onedev.top/api/v1/news` //link api tạo mới news
       ).post("") // phương thức post
       .send(body) //gửi request body lên
       .set('Authorization', `Bearer ${access_token}`); // set access_token để gọi được api
@@ -103,7 +104,11 @@ describe('Create news tests',  () => {
     }, 10000)
     //viết code test nếu request body gửi lên sai => trả ra HTTP status 400
     it("should return 400", async () => {
-      const response = await required(`https://gce.onedev.top/api/v1/news`).post("").send(body).set('Authorization', `Bearer ${access_token}`);
+      const response = await required(//dùng required của thư viện supertest để call api
+        `https://gce.onedev.top/api/v1/news` //link api tạo mới news
+        ).post("") // phương thức post
+        .send(body) //gửi request body lên
+        .set('Authorization', `Bearer ${access_token}`); // set access_token để gọi được api
       expect(response.statusCode).toBe(400); //so sánh http status sai trả ra 400 => sai
     }, 10000)
 });
@@ -140,7 +145,8 @@ describe("Update news tests", () => {
   //viết code test nếu id đúng => trả ra HTTP status 201
   it("should call endpoint id with true, return 201", async () => {
     //khai báo biến response nhận giá trị response khi call api update trả về
-    const response = await required(`https://gce.onedev.top/api/v1/news/${id}`) //link api truyền thêm id
+    const response = await required( //dùng required của thư viện supertest để call api
+      `https://gce.onedev.top/api/v1/news/${id}`) //link api truyền thêm id
       .put("") //phương thức put
       .send(body) // //gửi request body lên
       .set("Authorization", `Bearer ${access_token}`); // set access_token để gọi được api
@@ -150,7 +156,8 @@ describe("Update news tests", () => {
   //viết code test id sai => trả ra HTTP status 404
   it("should call endpoint id with false, return 404", async () => {
     //khai báo biến response nhận giá trị response khi call api update trả về
-    const response = await required(`https://gce.onedev.top/api/v1/news/${id}`) //link api truyền thêm id
+    const response = await required(//dùng required của thư viện supertest để call api
+      `https://gce.onedev.top/api/v1/news/${id}`) //link api truyền thêm id
       .put("") // phương thức put
       .send(body) //gửi request body lên
       .set("Authorization", `Bearer ${access_token}`); // set access_token để gọi được api
@@ -160,7 +167,8 @@ describe("Update news tests", () => {
   //viết code test request body gửi lên đúng => trả ra HTTP status 201
   it("should call request body, return 201", async () => {
     //khai báo biến response nhận giá trị response khi call api update trả về
-    const response = await required(`https://gce.onedev.top/api/v1/news/${id}`) //link api truyền thêm id
+    const response = await required(//dùng required của thư viện supertest để call api
+      `https://gce.onedev.top/api/v1/news/${id}`) //link api truyền thêm id
       .put("") // phương thức put
       .send(body) //gửi request body lên
       .set("Authorization", `Bearer ${access_token}`); // set access_token để gọi được api
@@ -170,7 +178,8 @@ describe("Update news tests", () => {
   //viết code test request body gửi lên sai => trả ra HTTP status 400
   it("should call request body, return 400", async () => {
       //khai báo biến response nhận giá trị response khi call api update trả về
-    const response = await required(`https://gce.onedev.top/api/v1/news/${id}`) //link api truyền thêm id
+    const response = await required(//dùng required của thư viện supertest để call api
+      `https://gce.onedev.top/api/v1/news/${id}`) //link api truyền thêm id
       .put("") // phương thức put
       .send(body) //gửi request body lên
       .set("Authorization", `Bearer ${access_token}`); // set access_token để gọi được api
